@@ -1,1 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>傩戏·巫傩文化数字科普</title>
+    <style>
+        :root {
+            --primary-color: #964343;
+            --secondary-color: #2c2c2c;
+            --bg-color: #faf0e6;
+        }
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+            font-family: 'Songti SC', 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background: var(--bg-color);
+            overflow-x: hidden;
+        }
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: url('1.png') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: rgb(102, 6, 6);
+            margin-bottom:80px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 0.5em;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--secondary-color);
+            padding: 15px;
+            z-index: 100;
+        }
+        .nav-container {
+            display: inline-block;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 300;
+            padding: 1px 1px;
+            border-radius: 40px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+        .nav a:hover {
+            background: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(214, 0, 0, 0.2);
+        }
+        .nav a.active {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section {
+            margin-bottom: 100px;
+        }
+        .section-title {
+            font-size: 2.8em;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+        .mask-grid, .activity-grid, .instrument-grid, .history-timeline {
+            display: grid;
+            gap: 40px;
+        }
+        .mask-card, .activity-card, .instrument-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .mask-card:hover, .activity-card:hover, .instrument-card:hover {
+            transform: translateY(-10px);
+        }
+        .card-media {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-content {
+            padding: 30px;
+        }
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .history-timeline {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+        .timeline-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+        }
+        
+    
+        .timeline-year {
+            font-size: 1.6em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .hero h1 {font-size: 2em;}
+            .nav-container {flex-direction: column; align-items: center; gap: 1px; padding: 1px;}
+            .mask-grid, .activity-grid, .instrument-grid {grid-template-columns: 1fr;}
+            .history-timeline {grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div>
+            <h1>傩戏·活态的文化基因库</h1>
+            <p>跨越三千年的巫傩密码，在面具与法器间延续的人与神灵对话</p>
+        </div>
+    </header>
 
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#mask" class="active">傩戏面具</a>
+            <a href="#activity">傩戏活动</a>
+            <a href="#instrument">傩戏法器</a>
+            <a href="#history">傩戏历史</a>
+            <a href="#peripheral">文化周边</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <section id="mask" class="section">
+            <h2 class="section-title">傩戏面具：凝固的神灵表情</h2>
+            <div class="mask-grid">
+                <div class="mask-card">
+                    <div class="card-media" style="background-image: url('2.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩公傩母面具</h3>
+                        <p>以"傩公傩母"为核心，额头刻日月纹象征宇宙秩序，耳垂穿孔系铜铃增强通神感应</p>
+                    </div>
+                </div>
+                <div class="mask-card">
+                    <div class="card-media" style="background-image: url('3.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">开山面具</h3>
+                        <p>开山，又称开路大神，位于众神之首，是南丰傩班的必备面具，也是每个傩班第一个表演的节目</p>
+                    </div>
+                </div>
+                <div class="mask-card">
+                    <div class="card-media" style="background-image: url('5.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">魁星面具</h3>
+                        <p>中国传统文化中，魁星被视为掌管文运的神</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activity" class="section">
+            <h2 class="section-title">傩戏活动：时空交织的仪式</h2>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="card-media" style="background-image: url('6.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩仪·驱疫祭仪</h3>
+                        <p>冬至"大傩"由方相氏领衔，戴熊皮面具持戈盾跳《傩舞》，沿门逐疫时撒五谷驱邪</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <div class="card-media" style="background-image: url('7.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩舞·巫风遗韵</h3>
+                        <p>"禹步"模仿大禹跛行以示虔诚，"傩公傩母舞"重现人类始祖神话，步法暗合河图洛书</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <div class="card-media" style="background-image: url('8.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏·戏剧胚胎</h3>
+                        <p>贵州《撮泰吉》饰演洪荒时代，演员反穿皮袄模拟原始人，台词保留古彝语词汇</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="instrument" class="section">
+            <h2 class="section-title">傩戏法器：通灵的物质载体</h2>
+            <div class="instrument-grid">
+                <div class="instrument-card">
+                    <div class="card-media" style="background-image: url('9.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">师刀·九环镇邪</h3>
+                        <p>九环代表九州，摇动时环声如雷镇慑邪祟，刀柄刻"五毒"图案以毒攻毒</p>
+                    </div>
+                </div>
+                <div class="instrument-card">
+                    <div class="card-media" style="background-image: url('10.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">令牌·雷令降魔</h3>
+                        <p>梨木雕刻"雷令"二字，施法时猛击桌案，声响被视为雷神响应的征兆</p>
+                    </div>
+                </div>
+                <div class="instrument-card">
+                    <div class="card-media" style="background-image: url('11.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">宝剑·斩鬼之剑</h3>
+                        <p>钢铁制造，一般长度为0.50-0.55米，宽0.04-0.05米双面刃，刀柄刻有南北斗星，用作驱邪、除魔、斩鬼</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" class="section">
+            <h2 class="section-title">傩戏历史：文明的年轮</h2>
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <h3 class="timeline-year">商周</h3>
+                    <p>甲骨文记载"傩"字作"人持戈舞"，《周礼》设"方相氏"官职掌傩仪，用熊皮面具驱疫</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="timeline-year">汉唐</h3>
+                    <p>汉代傩仪加入"十二神兽吃鬼"表演，唐代《大傩图》描绘百人傩队，面具趋向戏剧化</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="timeline-year">明清</h3>
+                    <p>各地形成流派：安徽"贵池傩"重祭祀，湖南"傩堂戏"融民歌，面具雕刻工艺登峰造极</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="timeline-year">当代</h3>
+                    <p>2006年列入首批国家级非遗，贵州德江建立傩戏博物馆，AR技术复原古傩场景</p>
+                </div>
+            </div>
+        </section>
+        <section id="peripheral" class="section">
+            <h2 class="section-title">文化周边：触手可及的傩韵</h2>
+            <div class="peripheral-grid mask-grid">
+                <!-- 新增第四个商品 -->
+                <div class="mask-card">
+                    <div class="card-media" style="background-image: url('13.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏马克杯</h3>
+                        <p>原创设计<br>捧起传统，啜饮文化韵香<br><em class="price">¥30.99</em></p>
+                        <button class="buy-btn" onclick="showProduct('12.png')">立即购买</button>
+                    </div>
+                </div>
+                <!-- 修改原有三个商品的按钮 -->
+                <div class="mask-card">
+                    <div class="card-media" style="background-image: url('14.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏钥匙扣</h3>
+                        <p>原创设计<br>打破传统，做街头最个性的文化潮人<br><em class="price">¥21.9</em></p>
+                        <button class="buy-btn" onclick="showProduct('12.png')">立即购买</button>
+                    </div>
+                </div>
+                    <div class="mask-card">
+                    <div class="card-media" style="background-image: url('15.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏帆布包</h3>
+                        <p>原创设计<br>独特图案让你成为街头焦点<br><em class="price">¥39.9</em></p>
+                        <button class="buy-btn" onclick="showProduct('12.png')">立即购买</button>
+                    </div>
+                </div>
+                    <div class="mask-card">
+                    <div class="card-media" style="background-image: url('16.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏抱枕</h3>
+                        <p>原创设计<br>兼具创意与文化收藏价值<br><em class="price">¥49.8</em></p>
+                        <button class="buy-btn" onclick="showProduct('12.png')">立即购买</button>
+                    </div>
+                </div>
+                    <div class="mask-card">
+                    <div class="card-media" style="background-image: url('17.png')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">傩戏杯垫</h3>
+                        <p>原创设计<br>古韵匠心，承载传统美学<br><em class="price">¥39.9</em></p>
+                        <button class="buy-btn" onclick="showProduct('12.png')">立即购买</button>
+                    </div>
+                </div>
+                <!-- 重复为其他三个商品添加按钮 -->
+            </div>
+        </section>
+        
+        <!-- 添加图片弹窗 -->
+        <div id="previewModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="previewImg">
+        </div>
+        
+        <style>
+            /* 添加弹窗样式 */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+            }
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 35px;
+                color: white;
+                font-size: 40px;
+                cursor: pointer;
+            }
+        </style>
+        
+        <script>
+            function showProduct(imgSrc) {
+                const modal = document.getElementById("previewModal");
+                const img = document.getElementById("previewImg");
+                img.src = imgSrc;
+                modal.style.display = "block";
+            }
+        
+            function closeModal() {
+                document.getElementById("previewModal").style.display = "none";
+            }
+            
+            // 点击蒙层关闭
+            window.onclick = function(event) {
+                const modal = document.getElementById("previewModal");
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">傩</div>
+        <div class="footer-links">
+            <a href="#mask">面具</a>
+            <a href="#activity">活动</a>
+            <a href="#instrument">法器</a>
+            <a href="#history">历史</a>
+            <a href="#peripheral">周边</a>
+        </div>
+        <p>大学生傩戏文化宣传工作</p>
+    </footer>
+</body>
+</html>
